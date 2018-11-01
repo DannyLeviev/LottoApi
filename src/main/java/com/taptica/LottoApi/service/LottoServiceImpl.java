@@ -11,9 +11,6 @@ public class LottoServiceImpl implements LottoService {
 	@Autowired
 	private LottoRepo lottoRepo;
 
-	/* (non-Javadoc)
-	 * @see com.taptica.LottoApi.service.LottoApiIt#serve(java.lang.String, java.lang.String)
-	 */
 	@Override
 	public boolean serve(String userId, String guessedNumStr) {
 		// validate the guessedNum: <TBD>

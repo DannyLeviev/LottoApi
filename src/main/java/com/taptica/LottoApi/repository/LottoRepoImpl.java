@@ -22,12 +22,6 @@ public class LottoRepoImpl implements LottoRepo {
 	private final Map<Integer, GuessingUsersList> numPool = new ConcurrentHashMap<>();
 	private final Set<String> usersPool = new HashSet<>();
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.taptica.LottoApi.repository.LottoRepo#addUserGuess(java.lang.String,
-	 * java.lang.Integer)
-	 */
 	@Override
 	public boolean addUserGuess(String userId, Integer guessedNum) {
 		boolean result = false;
@@ -49,11 +43,6 @@ public class LottoRepoImpl implements LottoRepo {
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.taptica.LottoApi.repository.LottoRepo#resetPools()
-	 */
 	@Override
 	public void resetPools() {
 		lock.lock();
@@ -65,18 +54,11 @@ public class LottoRepoImpl implements LottoRepo {
 		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.taptica.LottoApi.repository.LottoRepo#printWinningUsers(java.lang.
-	 * Integer)
-	 */
 	@Override
 	public void printWinningUsers(Integer lottoRunNum) {
 		if (numPool.containsKey(lottoRunNum)) {
 			numPool.get(lottoRunNum).printToLog();
-		}
-		else {
+		} else {
 			LOGGER.info(NO_WINNERS_MSG, lottoRunNum);
 		}
 	}
