@@ -21,7 +21,7 @@ public class HttpController {
 
 	private final String SUCCESSFUL_SERV = "Guessing number {} for user {} was successfuly registered.";
 	private final String TOO_MANY_GUESSES = "User {} already registered two guesses !";
-	private final String GUESSING_NUMBER_IS_OUT_OF_RANG = "User {} tried to provide a guess out of valid rage !";
+	private final String GUESSING_NUMBER_IS_OUT_OF_RANG = "User {} tried to provide a guess out of valid range !";
 	private final static Logger LOGGER = LoggerFactory.getLogger(HttpController.class);
 	private final LottoService lottoServ;
 
