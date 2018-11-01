@@ -17,7 +17,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.taptica.LottoApi.controller.HttpController;
 import com.taptica.LottoApi.exceptions.InvalidLotterryNumberProvidedException;
 import com.taptica.LottoApi.exceptions.TooManyGuessingTriesException;
-import com.taptica.LottoApi.service.LottoService;
+import com.taptica.LottoApi.service.LottoServiceImpl;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(HttpController.class)
@@ -27,7 +27,7 @@ public class HttpControllerUnitTest {
 	private MockMvc mockMvc;
 
 	@MockBean
-	private LottoService lottoServ;
+	private LottoServiceImpl lottoServ;
 
 	@Test
 	public void testValidGuess() throws Exception {

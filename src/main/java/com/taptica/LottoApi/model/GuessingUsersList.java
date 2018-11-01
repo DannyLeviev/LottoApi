@@ -21,7 +21,7 @@ public class GuessingUsersList {
 		guessPool.add(userId);
 	}
 
-	public void printToLog() {
+	public synchronized void printToLog() {
 		LOGGER.info("Winning Users are: " + guessPool.toString());
 	}
 

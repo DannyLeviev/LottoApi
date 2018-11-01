@@ -28,6 +28,7 @@ public class LotteryJob {
 			lottoRepo.resetPools();
 		} finally {
 			lock.unlock();
+			System.out.println("************ Scheduler complated the job  !!! ***************");
 		}
 	}
 
