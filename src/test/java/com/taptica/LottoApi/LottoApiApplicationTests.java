@@ -24,12 +24,12 @@ public class LottoApiApplicationTests {
 
 	@Before
 	public void delayBeforeTest() throws Exception {
-		TimeUnit.SECONDS.sleep(3);
+		TimeUnit.SECONDS.sleep(2);
 	}
 
 	@Before
 	public void delayAfterTest() throws Exception {
-		TimeUnit.SECONDS.sleep(3);
+		TimeUnit.SECONDS.sleep(2);
 	}
 
 	@Test
@@ -38,11 +38,18 @@ public class LottoApiApplicationTests {
 	}
 
 	@Test
-	public void testTooManyGuesses() throws Exception {
+	public void test_too_many_guesses() throws Exception {
 		for (int i = 0; i < 2; i++) {
-			mockMvc.perform(post("/222/?guessedNum=22")).andExpect(status().isOk());
+			mockMvc.perform(post("/222/?guessedNum=" + (20 + i))).andExpect(status().isOk());
 		}
-		mockMvc.perform(post("/222/?guessedNum=22")).andExpect(status().isTooManyRequests());
+		mockMvc.perform(post("/222/?guessedNum=25")).andExpect(status().isTooManyRequests());
 	}
 
+	
+	@Test
+	public void test_out_of_range_guesses() throws Exception {
+		mockMvc.perform(post("/333/?guessedNum=333")).andExpect(status().isBadRequest());
+	}
+
+	
 }
