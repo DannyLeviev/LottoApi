@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import com.taptica.LottoApi.controller.HttpController;
+import com.taptica.LottoApi.exceptions.TooManyGuessingTriesException;
 import com.taptica.LottoApi.model.GuessingUsersList;
 
 @Component
@@ -29,13 +30,19 @@ public class LottoRepoImpl implements LottoRepo {
 		try {
 			if (!usersPool.contains(userId + "_1st")) {
 				usersPool.add(userId + "_1st");
-				numPool.put(guessedNum, new GuessingUsersList());
-				numPool.get(guessedNum).addUser(userId);
 				result = true;
 			} else if (!usersPool.contains(userId + "_2nd")) {
 				usersPool.add(userId + "_2nd");
-				numPool.get(guessedNum).addUser(userId);
 				result = true;
+			}
+			else {
+				throw new TooManyGuessingTriesException(userId);
+			}
+			if (result == true) {
+				if (!numPool.containsKey(guessedNum)) {
+					numPool.put(guessedNum, new GuessingUsersList());
+				}
+				numPool.get(guessedNum).addUser(userId);
 			}
 		} finally {
 			lock.unlock();

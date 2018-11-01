@@ -4,7 +4,7 @@ public class TooManyGuessingTriesException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
 
-	public TooManyGuessingTriesException(Long userId) {
+	public TooManyGuessingTriesException(String userId) {
 		super("The User - " + userId + " has already submitted two guesses !!!");
 	}
 }
